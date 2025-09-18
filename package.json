@@ -1,5 +1,6 @@
 {
-	"name": "example-basic",
+	"name": "obsidian-better-properties-docs",
+	"author": "unxok",
 	"type": "module",
 	"scripts": {
 		"dev": "vinxi dev",
