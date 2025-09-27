@@ -5,10 +5,12 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import mdx from "@mdx-js/rollup";
 import path from "path";
+import rehypeSlug from "rehype-slug";
+import rehypeMdxToc from "rehype-mdx-toc";
 
 export default defineConfig({
 	plugins: [
-		mdx(),
+		mdx({ rehypePlugins: [rehypeSlug, rehypeMdxToc] }),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
 		tailwindcss(),
 		reactRouter(),
