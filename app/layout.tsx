@@ -31,7 +31,13 @@ import "./typography.css";
 import "./index.css";
 import { cn } from "./lib/utils";
 import { RightSidebar, TocProvider } from "./components/common/TocSidebar";
-import { Coffee, ExternalLink, Menu, PanelRight } from "lucide-react";
+import {
+	Coffee,
+	ExternalLink,
+	Menu,
+	PanelLeft,
+	PanelRight,
+} from "lucide-react";
 import { Button, buttonVariants } from "./components/ui/button";
 import {
 	DropdownMenu,
@@ -227,16 +233,14 @@ const Header = ({
 }) => {
 	return (
 		<header className='flex items-center justify-between gap-1 px-2 py-2 border-b-1 bg-background'>
-			<div className='flex gap-1 items-center'>
-				<Button
-					onClick={toggleLeftSidebar}
-					variant={"ghost"}
-					size={"icon"}
-				>
-					<Menu />
-				</Button>
-				<H1 />
-			</div>
+			<Button
+				onClick={toggleLeftSidebar}
+				variant={"ghost"}
+				size={"icon"}
+			>
+				<PanelLeft />
+			</Button>
+			<H1 />
 			<Button
 				variant={"ghost"}
 				size={"icon"}
@@ -249,7 +253,7 @@ const Header = ({
 };
 
 const H1 = () => (
-	<h1 className='flex font-bold tracking-wide items-center gap-[.5ch] text-lg'>
+	<h1 className='flex font-bold tracking-wide max-[324px]:text-sm items-center gap-[.5ch]'>
 		<Logo
 			width={18}
 			height={18}
