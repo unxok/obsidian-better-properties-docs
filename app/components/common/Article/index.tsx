@@ -29,7 +29,7 @@ export const Article = ({
 	}, [toc]);
 	return (
 		<div className='flex w-full justify-center max-w-[95%] mx-auto'>
-			<article className='typography py-12 w-full h-fit max-w-[80ch]'>
+			<article className='typography pt-12 pb-72 w-full h-fit max-w-[80ch]'>
 				{children}
 				<hr />
 				<div className='flex items-center justify-between w-full'>
