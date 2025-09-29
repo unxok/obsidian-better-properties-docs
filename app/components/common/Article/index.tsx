@@ -32,7 +32,7 @@ export const Article = ({
 			<article className='typography pt-12 pb-72 w-full h-fit max-w-[80ch]'>
 				{children}
 				<hr />
-				<div className='flex items-center justify-between w-full'>
+				<div className='flex flex-wrap gap-4 items-center justify-between w-full'>
 					<EditOnGithub path={path} />
 					{next && (
 						<Link

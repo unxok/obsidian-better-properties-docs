@@ -10,7 +10,6 @@ import { Link } from "react-router";
 import type { TocItem } from "rehype-mdx-toc";
 import {
 	Sidebar,
-	SidebarProvider,
 	SidebarHeader,
 	SidebarContent,
 	SidebarGroup,
@@ -21,11 +20,8 @@ import {
 	SidebarMenuItem,
 	SidebarMenuButton,
 	SidebarMenuSub,
-	SidebarTrigger,
 	SidebarFooter,
 } from "~/components/ui/sidebar";
-import { Header } from "../Header";
-import { PanelRight } from "lucide-react";
 import { Button } from "~/components/ui/button";
 
 const TocContext = createContext<{
