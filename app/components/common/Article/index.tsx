@@ -1,103 +1,53 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { EditOnGithub } from "../EditOnGithub";
-import type { HeadingDepth, TocItem } from "rehype-mdx-toc";
-import {
-	Sidebar,
-	SidebarContent,
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarGroupLabel,
-	SidebarHeader,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarMenuSub,
-	SidebarRail,
-} from "~/components/ui/sidebar";
-import { Link, href } from "react-router";
-import { Logo } from "../Logo";
-import { Header } from "../Header";
+import type { TocItem } from "rehype-mdx-toc";
+import { useToc } from "../TocSidebar";
+import { Link } from "react-router";
+import { cn, type Path } from "~/lib/utils";
+import { buttonVariants } from "~/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export const Article = ({
 	children,
 	path,
 	toc,
+	next,
 }: {
 	children: ReactNode;
 	path: string;
-	toc?: TocItem[];
+	toc: TocItem[];
+	next?: {
+		path: Path;
+		label: string;
+	};
 }): ReactNode => {
+	const { setToc } = useToc();
+
+	useEffect(() => {
+		if (!toc) return;
+		setToc(() => [...toc]);
+	}, [toc]);
 	return (
-		<div className='flex w-full'>
-			<article className='typography w-full max-w-[80ch] mx-auto'>
+		<div className='flex w-full justify-center max-w-[95%] mx-auto'>
+			<article className='typography py-12 w-full h-fit max-w-[80ch]'>
 				{children}
 				<hr />
-				<EditOnGithub path={path} />
+				<div className='flex items-center justify-between w-full'>
+					<EditOnGithub path={path} />
+					{next && (
+						<Link
+							to={next.path}
+							className={cn(
+								buttonVariants({ variant: "secondary" }),
+								"no-underline"
+							)}
+						>
+							{next.label}
+							<ArrowRight />
+						</Link>
+					)}
+				</div>
 			</article>
-			<Sidebar
-				collapsible='offcanvas'
-				side='right'
-			>
-				<SidebarHeader>
-					<Header />
-				</SidebarHeader>
-				<SidebarContent>
-					<SidebarGroup>
-						<SidebarGroupLabel>On this page</SidebarGroupLabel>
-						<SidebarGroupContent>
-							<SidebarMenu>
-								{nestTocByDepth(toc ?? []).map((item) =>
-									renderNestedMenu(item)
-								)}
-							</SidebarMenu>
-						</SidebarGroupContent>
-					</SidebarGroup>
-				</SidebarContent>
-				<SidebarRail />
-			</Sidebar>
 		</div>
 	);
-};
-
-const renderNestedMenu = (item: TreeNode) => (
-	<SidebarMenuItem key={item.id}>
-		<SidebarMenuButton asChild>
-			<Link
-				to={{
-					hash: item.href,
-				}}
-			>
-				{item.value}
-			</Link>
-		</SidebarMenuButton>
-		{item.children.length ? (
-			<SidebarMenuSub>
-				{item.children.map((subItem) => renderNestedMenu(subItem))}
-			</SidebarMenuSub>
-		) : undefined}
-	</SidebarMenuItem>
-);
-
-type TreeNode = TocItem & { children: TreeNode[] };
-
-const nestTocByDepth = (toc: readonly TocItem[]): TreeNode[] => {
-	const roots: TreeNode[] = [];
-	const stack: TreeNode[] = [];
-
-	for (const item of toc) {
-		const depth = Math.max(1, Number(item.depth));
-		const node: TreeNode = { ...item, children: [] };
-
-		stack.length = Math.min(stack.length, depth - 1);
-
-		if (stack.length === 0) {
-			roots.push(node);
-		} else {
-			stack[stack.length - 1].children.push(node);
-		}
-
-		stack[depth - 1] = node;
-	}
-
-	return roots;
 };

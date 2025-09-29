@@ -1,9 +1,9 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "obsidian-better-properties-docs",
-  "compatibility_date": "2025-04-04",
-  "main": "./workers/app.ts",
-  "vars": {
-    "VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "obsidian-better-properties-docs",
+	"compatibility_date": "2025-04-04",
+	"main": "./workers/app.ts",
+	"vars": {
+		"GITHUB_PAT": "STORED IN dev.vars",
+	},
 }

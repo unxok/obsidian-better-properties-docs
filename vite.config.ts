@@ -7,10 +7,17 @@ import mdx from "@mdx-js/rollup";
 import path from "path";
 import rehypeSlug from "rehype-slug";
 import rehypeMdxToc from "rehype-mdx-toc";
+import rehypeAutoLinkHeadings from "rehype-autolink-headings";
+import recmaExportFilepath from "recma-export-filepath";
+import remarkGfm from "remark-gfm";
 
 export default defineConfig({
 	plugins: [
-		mdx({ rehypePlugins: [rehypeSlug, rehypeMdxToc] }),
+		mdx({
+			remarkPlugins: [remarkGfm],
+			rehypePlugins: [rehypeSlug, rehypeMdxToc, rehypeAutoLinkHeadings],
+			recmaPlugins: [recmaExportFilepath],
+		}),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
 		tailwindcss(),
 		reactRouter(),

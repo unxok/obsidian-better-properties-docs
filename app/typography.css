@@ -221,13 +221,12 @@
 
 		& code:not(pre code):not(.not-typography code) {
 			position: relative;
-			border-radius: var(--radius);
+			border-radius: var(--radius-sm);
 			background-color: var(--color-muted);
-			padding: calc(var(--spacing) * 0.2) calc(var(--spacing) * 0.3);
+			padding: calc(var(--spacing) * 0.2) calc(var(--spacing));
 			font-family: var(--font-mono);
 			font-size: var(--text-sm);
 			line-height: var(--text-sm--line-height);
-			font-weight: 600;
 		}
 
 		& .lead:not(.not-typography .lead) {

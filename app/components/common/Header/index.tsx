@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { Logo } from "~/components/common/Logo";
 import { ThemeSwitcher } from "~/components/common/ThemeSwitcher";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { GithubIcon } from "~/components/common/GithubIcon";
 import {
 	DropdownMenu,
@@ -9,10 +8,21 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { ExternalLink } from "lucide-react";
+import { Coffee, ExternalLink } from "lucide-react";
 
 export const Header = (): ReactNode => (
-	<header className='flex items-center gap-1 w-full justify-end'>
+	<header
+		className='flex items-center gap-1 w-full justify-around
+	
+	'
+	>
+		<a
+			title='Buy me a coffee'
+			href='https://buymeacoffee.com/unxok'
+			className={buttonVariants({ variant: "ghost" })}
+		>
+			<Coffee />
+		</a>
 		<GithubButton />
 		<ThemeSwitcher />
 	</header>
@@ -21,7 +31,10 @@ export const Header = (): ReactNode => (
 const GithubButton = (): ReactNode => (
 	<DropdownMenu>
 		<DropdownMenuTrigger asChild>
-			<Button variant={"ghost"}>
+			<Button
+				title='Github links'
+				variant={"ghost"}
+			>
 				<GithubIcon />
 			</Button>
 		</DropdownMenuTrigger>

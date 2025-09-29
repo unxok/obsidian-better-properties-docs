@@ -1,10 +1,10 @@
-import { EditOnGithub } from "~/components/common/EditOnGithub";
-import type { Route } from "../../+types/root";
-import Introduction, {
+import type { Route } from "./+types/route";
+import MdxArticle, {
 	// @ts-expect-error TODO named imports from *.mdx not being recognized by TS
 	toc,
-} from "~/articles/introduction.mdx";
-import type { ReactNode } from "react";
+	// @ts-expect-error
+	filepath,
+} from "./article.mdx";
 import { Article } from "~/components/common/Article";
 
 export function meta({}: Route.MetaArgs) {
@@ -17,14 +17,17 @@ export function meta({}: Route.MetaArgs) {
 	];
 }
 
-export default function Home({}: Route.ComponentProps) {
-	console.log(toc);
+export default function Route({}: Route.ComponentProps) {
 	return (
 		<Article
-			path='introduction'
+			path={filepath}
 			toc={toc}
+			next={{
+				label: "Installation",
+				path: "/getting-started/installation",
+			}}
 		>
-			<Introduction />
+			<MdxArticle />
 		</Article>
 	);
 }
