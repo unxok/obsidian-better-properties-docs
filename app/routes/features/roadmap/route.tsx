@@ -32,9 +32,9 @@ export async function loader({ context }: Route.LoaderArgs) {
 			headers: {
 				"Accept": "application/vnd.github+json",
 				"User-Agent": "obsidian-better-properties-docs",
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
-				"Access-Control-Max-Age": "86400",
+				// "Access-Control-Allow-Origin": "*",
+				// "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+				// "Access-Control-Max-Age": "86400",
 				"Authorization": `Bearer ${token}`,
 				"X-GitHub-Api-Version": "2022-11-28",
 			},
@@ -66,6 +66,7 @@ export async function loader({ context }: Route.LoaderArgs) {
 // }
 
 export default function Route({ loaderData }: Route.ComponentProps) {
+	console.log("got loader data: ", loaderData);
 	return (
 		<Article
 			path={filepath}
