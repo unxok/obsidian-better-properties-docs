@@ -10,12 +10,18 @@ import rehypeMdxToc from "rehype-mdx-toc";
 import rehypeAutoLinkHeadings from "rehype-autolink-headings";
 import recmaExportFilepath from "recma-export-filepath";
 import remarkGfm from "remark-gfm";
+import rehypeStarryNight from "rehype-starry-night";
 
 export default defineConfig({
 	plugins: [
 		mdx({
 			remarkPlugins: [remarkGfm],
-			rehypePlugins: [rehypeSlug, rehypeMdxToc, rehypeAutoLinkHeadings],
+			rehypePlugins: [
+				rehypeSlug,
+				rehypeMdxToc,
+				rehypeAutoLinkHeadings,
+				rehypeStarryNight,
+			],
 			recmaPlugins: [recmaExportFilepath],
 		}),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),

@@ -13,5 +13,6 @@ export default [
 	]),
 	...prefix("features", [
 		route("roadmap", "routes/features/roadmap/route.tsx"),
+		route("bpjs", "routes/features/bpjs/route.tsx"),
 	]),
 ] satisfies RouteConfig;

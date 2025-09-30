@@ -29,6 +29,7 @@ import {
 import { Logo } from "./components/common/Logo";
 import "./typography.css";
 import "./index.css";
+import "./starry-night.css";
 import { cn } from "./lib/utils";
 import { RightSidebar, TocProvider } from "./components/common/TocSidebar";
 import {
@@ -161,6 +162,11 @@ const LeftSidebar = (): ReactNode => {
 									<NavLink to={href("/features/roadmap")}>
 										Roadmap, bugs, and more
 									</NavLink>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild>
+									<NavLink to={href("/features/bpjs")}>bpjs</NavLink>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 							{/* <SidebarMenuItem>
