@@ -46,7 +46,6 @@ export async function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Route({ loaderData }: Route.ComponentProps) {
-	console.log("got loader data: ", loaderData);
 	return (
 		<Article
 			path={filepath}
