@@ -6,4 +6,9 @@
 	"vars": {
 		"GITHUB_PAT": "STORED IN dev.vars",
 	},
+	"observability": {
+		"logs": {
+			"enabled": true,
+		},
+	},
 }
