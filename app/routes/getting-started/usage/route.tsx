@@ -23,8 +23,8 @@ export default function Route({}: Route.ComponentProps) {
 			path={filepath}
 			toc={toc}
 			next={{
-				label: "Installation",
-				path: "/getting-started/installation",
+				label: "Roadmap, bugs, and more",
+				path: "/features/roadmap",
 			}}
 		>
 			<MdxArticle />
