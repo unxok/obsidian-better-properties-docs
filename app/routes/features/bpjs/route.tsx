@@ -558,11 +558,11 @@ const ImportType = () => (
 				</li>
 				<li>
 					<code>.csv</code> - returns file contents parsed as a CSV to a
-					`string[][]`
+					<code>string[][]</code>
 				</li>
 				<li>
 					<code>.tsv</code> - returns file contents parsed as a TSV to a
-					`string[][]`
+					<code>string[][]</code>
 				</li>
 				<li>
 					<code>.md</code>, <code>.txt</code> - returns file contents
