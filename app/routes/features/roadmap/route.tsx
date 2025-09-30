@@ -38,11 +38,32 @@ export async function loader({ context }: Route.LoaderArgs) {
 				"Authorization": `Bearer ${token}`,
 				"X-GitHub-Api-Version": "2022-11-28",
 			},
+			mode: "cors",
 		}
 	);
 	const issues: Issue[] = await res.json();
 	return issues;
 }
+
+// export async function clientLoader({ context }: Route.ClientLoaderArgs) {
+// 	const res = await fetch(
+// 		"https://api.github.com/repos/unxok/obsidian-better-properties/issues",
+// 		{
+// 			headers: {
+// 				"Accept": "application/vnd.github+json",
+// 				"User-Agent": "obsidian-better-properties-docs",
+// 				// "Access-Control-Allow-Origin": "*,api.github.com",
+// 				// "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+// 				// "Access-Control-Max-Age": "86400",
+// 				// "Authorization": `Bearer ${token}`,
+// 				"X-GitHub-Api-Version": "2022-11-28",
+// 			},
+// 			mode: "cors",
+// 		}
+// 	);
+// 	const issues: Issue[] = await res.json();
+// 	return issues;
+// }
 
 export default function Route({ loaderData }: Route.ComponentProps) {
 	return (
