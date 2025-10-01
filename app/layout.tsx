@@ -40,6 +40,7 @@ import {
   DropdownMenuTrigger,
 } from "./components/ui/dropdown-menu";
 import { GithubIcon } from "./components/common/GithubIcon";
+import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 
 export const Layout = ({ children }: { children: ReactNode }): ReactNode => {
   const [leftOpen, setLeftOpen] = useState<boolean>(true);
@@ -55,33 +56,31 @@ export const Layout = ({ children }: { children: ReactNode }): ReactNode => {
       <body>
         <ThemeProvider>
           <TocProvider>
-            <Header
-              toggleLeftSidebar={() => setLeftOpen((prev) => !prev)}
-              toggleRightSidebar={() => setRightOpen((prev) => !prev)}
-            />
-            <div className="relative size-full">
-              <div className="absolute inset-0 flex flex-col bg-inherit text-inherit">
-                <div className="flex w-full">
-                  <SidebarProvider
-                    className="w-fit"
-                    open={leftOpen}
-                    onOpenChange={setLeftOpen}
-                  >
-                    <LeftSidebar />
-                  </SidebarProvider>
-                  <main className="bg-background h-screen w-full overflow-y-auto">
-                    {children}
-                    <ScrollRestoration />
-                    <Scripts />
-                  </main>
-                  <SidebarProvider
-                    className="w-fit"
-                    open={rightOpen}
-                    onOpenChange={setRightOpen}
-                  >
-                    <RightSidebar />
-                  </SidebarProvider>
-                </div>
+            <div className="fixed inset-0 flex flex-col bg-inherit text-inherit">
+              <Header
+                toggleLeftSidebar={() => setLeftOpen((prev) => !prev)}
+                toggleRightSidebar={() => setRightOpen((prev) => !prev)}
+              />
+              <div className="relative flex w-full">
+                <SidebarProvider
+                  className="w-fit"
+                  open={leftOpen}
+                  onOpenChange={setLeftOpen}
+                >
+                  <LeftSidebar />
+                </SidebarProvider>
+                <main className="bg-background h-screen w-full overflow-y-auto">
+                  {children}
+                  <ScrollRestoration />
+                  <Scripts />
+                </main>
+                <SidebarProvider
+                  className="w-fit"
+                  open={rightOpen}
+                  onOpenChange={setRightOpen}
+                >
+                  <RightSidebar />
+                </SidebarProvider>
               </div>
             </div>
           </TocProvider>
@@ -157,14 +156,14 @@ const LeftSidebar = (): ReactNode => {
                   <NavLink to={href("/features/bpjs")}>bpjs</NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {/* <SidebarMenuItem>
-								<SidebarMenuButton>Property types</SidebarMenuButton>
-								<SidebarMenuSub>
-									<SidebarMenuItem>
-										<SidebarMenuButton>Array</SidebarMenuButton>
-									</SidebarMenuItem>
-								</SidebarMenuSub>
-							</SidebarMenuItem> */}
+              <SidebarMenuItem>
+                <Alert>
+                  <AlertTitle>🚧 Under construction 🚧</AlertTitle>
+                  <AlertDescription>
+                    Beta release comming soon...
+                  </AlertDescription>
+                </Alert>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -222,15 +221,18 @@ const Header = ({
   toggleRightSidebar: () => void;
 }) => {
   return (
-    <header className="bg-background flex items-center justify-between gap-1 border-b-1 px-2 py-2">
-      <Button onClick={toggleLeftSidebar} variant={"ghost"} size={"icon"}>
-        <PanelLeft />
-      </Button>
-      <H1 />
-      <Button variant={"ghost"} size={"icon"} onClick={toggleRightSidebar}>
-        <PanelRight />
-      </Button>
-    </header>
+    <>
+      <UnderConstruction className="lg:hidden" />
+      <header className="bg-background flex items-center justify-between gap-1 border-b-1 px-2 py-2 lg:hidden">
+        <Button onClick={toggleLeftSidebar} variant={"ghost"} size={"icon"}>
+          <PanelLeft />
+        </Button>
+        <H1 />
+        <Button variant={"ghost"} size={"icon"} onClick={toggleRightSidebar}>
+          <PanelRight />
+        </Button>
+      </header>
+    </>
   );
 };
 
@@ -239,4 +241,15 @@ const H1 = () => (
     <Logo width={18} height={18} className="mb-0.5" />
     <span>Better Properties Docs</span>
   </h1>
+);
+
+const UnderConstruction = ({ className }: { className?: string }) => (
+  <div
+    className={cn(
+      "w-full border-b-1 bg-yellow-400/80 p-1 text-center font-mono font-semibold text-neutral-900",
+      className,
+    )}
+  >
+    🚧 site under construction 🚧
+  </div>
 );
