@@ -8,46 +8,46 @@ import { buttonVariants } from "~/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export const Article = ({
-	children,
-	path,
-	toc,
-	next,
+  children,
+  path,
+  toc,
+  next,
 }: {
-	children: ReactNode;
-	path: string;
-	toc: TocItem[];
-	next?: {
-		path: Path;
-		label: string;
-	};
+  children: ReactNode;
+  path: string;
+  toc: TocItem[];
+  next?: {
+    path: Path;
+    label: string;
+  };
 }): ReactNode => {
-	const { setToc } = useToc();
+  const { setToc } = useToc();
 
-	useEffect(() => {
-		if (!toc) return;
-		setToc(() => [...toc]);
-	}, [toc]);
-	return (
-		<div className='flex w-full justify-center max-w-[95%] mx-auto'>
-			<article className='typography pt-12 pb-72 w-full h-fit max-w-[80ch]'>
-				{children}
-				<hr />
-				<div className='flex flex-wrap gap-4 items-center justify-between w-full'>
-					<EditOnGithub path={path} />
-					{next && (
-						<Link
-							to={next.path}
-							className={cn(
-								buttonVariants({ variant: "secondary" }),
-								"no-underline"
-							)}
-						>
-							{next.label}
-							<ArrowRight />
-						</Link>
-					)}
-				</div>
-			</article>
-		</div>
-	);
+  useEffect(() => {
+    if (!toc) return;
+    setToc(() => [...toc]);
+  }, [toc]);
+  return (
+    <div className="mx-auto flex w-full max-w-[95%] justify-center">
+      <article className="typography h-fit w-full max-w-[80ch] pt-12 pb-72 [&_th_code,&_td_code]:text-nowrap">
+        {children}
+        <hr />
+        <div className="flex w-full flex-wrap items-center justify-between gap-4">
+          <EditOnGithub path={path} />
+          {next && (
+            <Link
+              to={next.path}
+              className={cn(
+                buttonVariants({ variant: "secondary" }),
+                "no-underline",
+              )}
+            >
+              {next.label}
+              <ArrowRight />
+            </Link>
+          )}
+        </div>
+      </article>
+    </div>
+  );
 };
