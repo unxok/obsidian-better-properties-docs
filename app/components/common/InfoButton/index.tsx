@@ -15,7 +15,7 @@ export const InfoButton = ({
   content: ReactNode;
 }) => {
   return (
-    <div className="flex size-full items-center gap-1">
+    <div className="inline-flex items-center gap-1">
       {label}
       <Popover>
         <PopoverTrigger asChild>

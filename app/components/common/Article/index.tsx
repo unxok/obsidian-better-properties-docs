@@ -29,6 +29,7 @@ export const Article = ({
   }, [toc]);
   return (
     <div className="mx-auto flex w-full max-w-[95%] justify-center">
+      {/* <DotsBackground /> */}
       <article className="typography h-fit w-full max-w-[80ch] pt-12 pb-72 [&_th_code,&_td_code]:text-nowrap">
         {children}
         <hr />
@@ -51,3 +52,7 @@ export const Article = ({
     </div>
   );
 };
+
+// const DotsBackground = () => (
+//   <div className="absolute inset-0 h-full w-full bg-[radial-gradient(var(--color-muted)_1px,transparent_1px)] [background-size:32px_32px]"></div>
+// );

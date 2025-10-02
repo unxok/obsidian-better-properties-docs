@@ -40,7 +40,6 @@ import {
   DropdownMenuTrigger,
 } from "./components/ui/dropdown-menu";
 import { GithubIcon } from "./components/common/GithubIcon";
-import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 
 export const Layout = ({ children }: { children: ReactNode }): ReactNode => {
   const [leftOpen, setLeftOpen] = useState<boolean>(true);
@@ -57,10 +56,6 @@ export const Layout = ({ children }: { children: ReactNode }): ReactNode => {
         <ThemeProvider>
           <TocProvider>
             <div className="fixed inset-0 flex flex-col bg-inherit text-inherit">
-              <Header
-                toggleLeftSidebar={() => setLeftOpen((prev) => !prev)}
-                toggleRightSidebar={() => setRightOpen((prev) => !prev)}
-              />
               <div className="relative flex w-full">
                 <SidebarProvider
                   className="w-fit"
@@ -70,6 +65,10 @@ export const Layout = ({ children }: { children: ReactNode }): ReactNode => {
                   <LeftSidebar />
                 </SidebarProvider>
                 <main className="bg-background h-screen w-full overflow-y-auto">
+                  <Header
+                    toggleLeftSidebar={() => setLeftOpen((prev) => !prev)}
+                    toggleRightSidebar={() => setRightOpen((prev) => !prev)}
+                  />
                   {children}
                   <ScrollRestoration />
                   <Scripts />
@@ -153,17 +152,24 @@ const LeftSidebar = (): ReactNode => {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <NavLink to={href("/features/bpjs")}>bpjs</NavLink>
+                  <NavLink to={href("/features/metadata-editor")}>
+                    Metadata Editor
+                  </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Alert>
-                  <AlertTitle>🚧 Under construction 🚧</AlertTitle>
-                  <AlertDescription>
-                    Beta release comming soon...
-                  </AlertDescription>
-                </Alert>
+                <SidebarMenuButton asChild>
+                  <NavLink to={href("/features/property-types")}>
+                    Property types
+                  </NavLink>
+                </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to={href("/features/bpjs")}>bpjs</NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem></SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -222,12 +228,11 @@ const Header = ({
 }) => {
   return (
     <>
-      <UnderConstruction className="lg:hidden" />
-      <header className="bg-background flex items-center justify-between gap-1 border-b-1 px-2 py-2 lg:hidden">
+      <header className="bg-background flex items-center justify-between gap-1 border-b-1 px-2 py-2 lg:border-0">
         <Button onClick={toggleLeftSidebar} variant={"ghost"} size={"icon"}>
           <PanelLeft />
         </Button>
-        <H1 />
+        <H1 className="lg:hidden" />
         <Button variant={"ghost"} size={"icon"} onClick={toggleRightSidebar}>
           <PanelRight />
         </Button>
@@ -236,20 +241,14 @@ const Header = ({
   );
 };
 
-const H1 = () => (
-  <h1 className="flex items-center gap-[.5ch] font-bold tracking-wide max-[324px]:text-sm">
-    <Logo width={18} height={18} className="mb-0.5" />
-    <span>Better Properties Docs</span>
-  </h1>
-);
-
-const UnderConstruction = ({ className }: { className?: string }) => (
-  <div
+const H1 = ({ className }: { className?: string }) => (
+  <h1
     className={cn(
-      "w-full border-b-1 bg-yellow-400/80 p-1 text-center font-mono font-semibold text-neutral-900",
+      "flex items-center gap-[.5ch] font-bold tracking-wide max-[324px]:text-sm",
       className,
     )}
   >
-    🚧 site under construction 🚧
-  </div>
+    <Logo width={18} height={18} className="mb-0.5" />
+    <span>Better Properties Docs</span>
+  </h1>
 );

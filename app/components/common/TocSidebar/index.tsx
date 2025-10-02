@@ -60,7 +60,9 @@ export const RightSidebar = () => {
           <SidebarGroupLabel>On this page</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {nestTocByDepth(toc ?? []).map((item) => renderNestedMenu(item))}
+              {nestTocByDepth(toc ?? [])?.[0]?.children?.map((item) =>
+                renderNestedMenu(item),
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -108,7 +110,7 @@ const nestTocByDepth = (toc: readonly TocItem[]): TreeNode[] => {
   const stack: TreeNode[] = [];
 
   for (const item of toc) {
-    const depth = Math.max(1, Number(item.depth));
+    const { depth } = item;
     const node: TreeNode = { ...item, children: [] };
 
     stack.length = Math.min(stack.length, depth - 1);

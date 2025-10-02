@@ -23,10 +23,10 @@ export default function Route({}: Route.ComponentProps) {
     <Article
       path={filepath}
       toc={toc}
-      // next={{
-      // 	label: "Installation",
-      // 	path: "/getting-started/installation",
-      // }}
+      next={{
+        label: "bpjs",
+        path: "/features/bpjs",
+      }}
     >
       <MdxArticle />
     </Article>

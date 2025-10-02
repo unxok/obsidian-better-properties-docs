@@ -185,6 +185,11 @@
       margin-left: calc(var(--spacing) * 6);
       list-style: disc;
 
+      ul:not(.not-typography ul) > li > &,
+      ol:not(.not-typography ol) > li > & {
+        margin-top: 0;
+      }
+
       & > li {
         margin-top: calc(var(--spacing) * 2);
       }
@@ -200,6 +205,11 @@
       margin-top: calc(var(--spacing) * 6);
       margin-left: calc(var(--spacing) * 6);
       list-style: decimal;
+
+      ol:not(.not-typography ol) > li > &,
+      ul:not(.not-typography ul) > li > & {
+        margin-top: 0;
+      }
 
       & > li {
         margin-top: calc(var(--spacing) * 2);
@@ -220,7 +230,7 @@
 			); */
 
       html.light & {
-        background-color: white;
+        background-color: #f6f8fa;
       }
       html.dark & {
         background-color: rgba(0, 0, 0, 0.5);

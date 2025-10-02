@@ -50,10 +50,10 @@ export default function Route({ loaderData }: Route.ComponentProps) {
     <Article
       path={filepath}
       toc={toc}
-      // next={{
-      // 	label: "Installation",
-      // 	path: "/getting-started/installation",
-      // }}
+      next={{
+        label: "Metadata Editor",
+        path: "/features/metadata-editor",
+      }}
     >
       <MdxArticle
         components={{
@@ -78,7 +78,7 @@ const RoadmapIssues = ({ issues }: { issues: Issue[] }) => {
       issues={issues
         .filter((issue) =>
           issue.labels.some((l) => {
-            const label = typeof l === "string" ? l : l.name ?? "";
+            const label = typeof l === "string" ? l : (l.name ?? "");
             return label?.toLowerCase().includes("roadmap");
           }),
         )
@@ -100,7 +100,7 @@ const BugIssues = ({ issues }: { issues: Issue[] }) => {
       issues={issues
         .filter((issue) =>
           issue.labels.some((l) => {
-            const label = typeof l === "string" ? l : l.name ?? "";
+            const label = typeof l === "string" ? l : (l.name ?? "");
             return label?.toLowerCase().includes("bug");
           }),
         )
@@ -124,7 +124,7 @@ const FeatureIssues = ({ issues }: { issues: Issue[] }) => {
           let isFR = false;
           let isOnRoadmap = false;
           issue.labels.forEach((l) => {
-            const label = typeof l === "string" ? l : l.name ?? "";
+            const label = typeof l === "string" ? l : (l.name ?? "");
             if (label?.toLowerCase().includes("roadmap")) {
               isOnRoadmap = true;
             }
