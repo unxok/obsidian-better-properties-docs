@@ -1,9 +1,4 @@
-import {
-  isRouteErrorResponse,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
+import { isRouteErrorResponse, Outlet } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
