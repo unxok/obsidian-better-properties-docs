@@ -37,7 +37,7 @@ export const Article = ({
           <EditOnGithub path={path} />
           {next && (
             <Link
-              to={next.path}
+              to={next.path + "##"}
               className={cn(
                 buttonVariants({ variant: "secondary" }),
                 "no-underline",

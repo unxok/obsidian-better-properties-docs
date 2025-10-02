@@ -65,13 +65,15 @@ export const Layout = ({ children }: { children: ReactNode }): ReactNode => {
                   <LeftSidebar />
                 </SidebarProvider>
                 <main className="bg-background h-screen w-full overflow-y-auto">
+                  <ScrollRestoration
+                    getScrollContainer={() => document.querySelector("main")}
+                  />
+                  <Scripts />
                   <Header
                     toggleLeftSidebar={() => setLeftOpen((prev) => !prev)}
                     toggleRightSidebar={() => setRightOpen((prev) => !prev)}
                   />
                   {children}
-                  <ScrollRestoration />
-                  <Scripts />
                 </main>
                 <SidebarProvider
                   className="w-fit"
