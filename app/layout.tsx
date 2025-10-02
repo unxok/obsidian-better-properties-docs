@@ -6,6 +6,7 @@ import {
   Scripts,
   href,
   NavLink as BaseNavLink,
+  Link,
 } from "react-router";
 import {
   ThemeProvider,
@@ -246,11 +247,14 @@ const Header = ({
 const H1 = ({ className }: { className?: string }) => (
   <h1
     className={cn(
-      "flex items-center gap-[.5ch] font-bold tracking-wide max-[324px]:text-sm",
+      "flex w-fit items-center gap-[.5ch] font-bold tracking-wide max-[324px]:text-sm",
       className,
     )}
   >
-    <Logo width={18} height={18} className="mb-0.5" />
-    <span>Better Properties Docs</span>
+    <Link to={href("/")}>
+      <span className="sr-only">Better Properties</span>
+      <Logo height={32} className="mb-0.5 w-full" />
+    </Link>
+    {/* <span>Better Properties Docs</span> */}
   </h1>
 );

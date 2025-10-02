@@ -14,6 +14,10 @@ export function meta({}: Route.MetaArgs) {
       name: "description",
       content: "Getting started with Better Properties",
     },
+    {
+      name: "image",
+      content: "/full-logo.svg",
+    },
   ];
 }
 
