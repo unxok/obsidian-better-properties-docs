@@ -30,7 +30,7 @@ export const Article = ({
   return (
     <div className="mx-auto flex w-full max-w-[95%] justify-center">
       {/* <DotsBackground /> */}
-      <article className="typography h-fit w-full max-w-[80ch] pt-12 pb-72 [&_th_code,&_td_code]:text-nowrap">
+      <article className="typography h-fit w-full max-w-[80ch] pt-4 pb-72 [&_th_code,&_td_code]:text-nowrap">
         {children}
         <hr />
         <div className="flex w-full flex-wrap items-center justify-between gap-4">
