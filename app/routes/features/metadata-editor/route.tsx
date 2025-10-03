@@ -6,19 +6,14 @@ import MdxArticle, {
 } from "./article.mdx";
 import { Article } from "~/components/common/Article";
 import type { Route } from "./+types/route";
+import { createMeta } from "~/lib/utils";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Metadata Editor | Better Properties Docs" },
-    {
-      name: "description",
-      content: "Metadata Editor features",
-    },
-  ];
+  return createMeta({
+    title: "Metadata Editor",
+    description: "Features relating to the Metadata Editor.",
+  });
 }
-
-// export async function loader({ context }: Route.LoaderArgs) {
-// }
 
 export default function Route({ loaderData }: Route.ComponentProps) {
   return (

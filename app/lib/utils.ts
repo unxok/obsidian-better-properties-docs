@@ -7,3 +7,51 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export type Path = Parameters<typeof href>[0];
+
+type Meta =
+  | { title: string }
+  | { name: string; content: string }
+  | { property: string; content: string };
+export const createMeta = (props: {
+  title: string;
+  description?: string;
+  image?: string;
+}): Meta[] => {
+  const title: Meta[] = [
+    {
+      title: props.title + " | Better Properties",
+    },
+    {
+      property: "og:title",
+      content: props.title + " | Better Properties",
+    },
+  ];
+
+  const description: Meta[] = props.description
+    ? [
+        {
+          name: "description",
+          content: props.description,
+        },
+        {
+          property: "og:description",
+          content: props.description,
+        },
+      ]
+    : [];
+
+  return [
+    ...title,
+    ...description,
+    {
+      property: "og:image",
+      content:
+        props.image ??
+        "https://better-properties.unxok.com/open-graph-image.png",
+    },
+    {
+      property: "og:site_name",
+      content: "Better Properties",
+    },
+  ];
+};

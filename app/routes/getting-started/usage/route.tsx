@@ -1,3 +1,4 @@
+import { createMeta } from "~/lib/utils";
 import type { Route } from "./+types/route";
 import MdxArticle, {
   // @ts-expect-error TODO named imports from *.mdx not being recognized by TS
@@ -8,13 +9,10 @@ import MdxArticle, {
 import { Article } from "~/components/common/Article";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Usage | Better Properties Docs" },
-    {
-      name: "description",
-      content: "Using Better Properties",
-    },
-  ];
+  return createMeta({
+    title: "Usage",
+    description: "Using Better Properties.",
+  });
 }
 
 export default function Route({}: Route.ComponentProps) {

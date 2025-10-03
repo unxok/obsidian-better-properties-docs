@@ -6,19 +6,14 @@ import MdxArticle, {
 } from "./article.mdx";
 import { Article } from "~/components/common/Article";
 import type { Route } from "./+types/route";
+import { createMeta } from "~/lib/utils";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Property types | Better Properties Docs" },
-    {
-      name: "description",
-      content: "Property types added by Better Properties",
-    },
-  ];
+  return createMeta({
+    title: "Property types",
+    description: "Descriptions and examples of newly added property types.",
+  });
 }
-
-// export async function loader({ context }: Route.LoaderArgs) {
-// }
 
 export default function Route({ loaderData }: Route.ComponentProps) {
   return (

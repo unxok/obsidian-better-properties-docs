@@ -10,17 +10,16 @@ import type { Route } from "./+types/route";
 import { ArrowDown, ArrowUp, MessageSquare } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import type { ReactNode } from "react";
+import { createMeta } from "~/lib/utils";
 
 type Issue = components["schemas"]["issue"];
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Roadmap | Better Properties Docs" },
-    {
-      name: "description",
-      content: "Features roadmap",
-    },
-  ];
+  return createMeta({
+    title: "Roadmap, bugs, and more",
+    description:
+      "Current issues categorized by roadmap, bugs, and feature requests.",
+  });
 }
 
 export async function loader({ context }: Route.LoaderArgs) {
