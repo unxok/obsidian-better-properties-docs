@@ -53,5 +53,17 @@ export const createMeta = (props: {
       property: "og:site_name",
       content: "Better Properties",
     },
+    {
+      property: "og:image:width",
+      content: "1200",
+    },
+    {
+      property: "og:image:width",
+      content: "600",
+    },
+    {
+      property: "og:type",
+      content: "object",
+    },
   ];
 };
