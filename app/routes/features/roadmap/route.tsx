@@ -149,7 +149,7 @@ const FeatureIssues = ({ issues }: { issues: Issue[] }) => {
 const IssuesList = ({ issues }: { issues: Issue[] }) => {
   return (
     <ul>
-      {issues.map(({ id, repository_url, title, comments, reactions }) => {
+      {issues.map(({ id, html_url, title, comments, reactions }) => {
         const badges: {
           label: string;
           icon: ReactNode;
@@ -204,7 +204,7 @@ const IssuesList = ({ issues }: { issues: Issue[] }) => {
         return (
           <li key={id}>
             <div className="flex items-center gap-2">
-              <a href={repository_url}>{title}</a>
+              <a href={html_url}>{title}</a>
               {badges
                 .filter(({ count }) => !!count)
                 .map(({ label, icon, count }) => (
