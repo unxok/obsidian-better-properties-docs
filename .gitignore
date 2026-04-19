@@ -1,14 +1,13 @@
+node_modules
 .DS_Store
+dist
+dist-ssr
+*.local
 .env
-/node_modules/
-*.tsbuildinfo
-
-# React Router
-/.react-router/
-/build/
-
-# Cloudflare
-.mf
+.nitro
+.tanstack
 .wrangler
-.dev.vars*
-worker-configuration.d.ts
+.output
+.vinxi
+__unconfig*
+todos.json
